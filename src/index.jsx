@@ -1,12 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+
 import * as serviceWorker from './serviceWorker';
 
+
+
+import theme from "./styles/theme";
+import { MuiThemeProvider } from "@material-ui/core";
+import TopNavBar from "./components/common/topMenuBar/topMenuBar";
+import Footer from "./components/common/footer/footerBar";
+import { Routes } from "./routes.jsx";
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+     <MuiThemeProvider theme={theme}>
+                        <TopNavBar />
+                        <Routes/>
+                     <Footer/>
+                    </MuiThemeProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
