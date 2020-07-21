@@ -4,9 +4,9 @@ import IconButton from "@material-ui/core/IconButton";
 import Button from "@material-ui/core/Button";
 import MenuIcon from '@material-ui/icons/Menu';
 import { withStyles } from "@material-ui/core/styles";
-
+import {ReactComponent as Logo} from '../../../assets/images/crown.svg';
 import React from "react";
-
+import {withRouter} from 'react-router-dom'
 // import Link from '@material-ui/core/Link';
 // import LangSwithcher from '../languageSwitcher';
 import styles from "./styles";
@@ -54,19 +54,22 @@ class TopMenuBar extends React.Component {
 
     render() {
        
-          
+          const {history}=this.props;
      //   const classes = useStyles();
 
         return (
             <AppBar position="static">
             <Toolbar>
+                <Logo className="logo"/>
               <IconButton edge="start" className="classes.menuButton" color="inherit" aria-label="menu">
                 <MenuIcon />
               </IconButton>
               <Typography variant="h6" className="classes.title">
                 News
               </Typography>
-              <Button color="inherit">Login</Button>
+              <Button color="inherit" onClick={()=>history.push("/")}>Home</Button>
+            
+              <Button color="inherit" onClick={()=>history.push("/signInRegister")}>Login</Button>
             </Toolbar>
           </AppBar>
         );
@@ -80,5 +83,5 @@ class TopMenuBar extends React.Component {
 
 
 
-export default (withStyles(styles)(TopMenuBar));
+export default withRouter((withStyles(styles)(TopMenuBar)));
 //export default connect(mapStateToProps, { signOut })(withTranslation('translations')(TopMenuBarStyles));

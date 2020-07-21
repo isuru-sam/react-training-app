@@ -10,13 +10,16 @@ import theme from "./styles/theme";
 import { MuiThemeProvider } from "@material-ui/core";
 import TopNavBar from "./components/common/topMenuBar/topMenuBar";
 import Footer from "./components/common/footer/footerBar";
-import { Routes } from "./routes.jsx";
+import { App } from "./App.jsx";
+import {BrowserRouter} from "react-router-dom"
 ReactDOM.render(
   <React.StrictMode>
      <MuiThemeProvider theme={theme}>
+       <BrowserRouter>
                         <TopNavBar />
-                        <Routes/>
+                        <App/>
                      <Footer/>
+                     </BrowserRouter>
                     </MuiThemeProvider>
   </React.StrictMode>,
   document.getElementById('root')

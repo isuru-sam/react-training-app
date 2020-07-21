@@ -1,56 +1,29 @@
 import React from "react";
 import './courseList.styles.scss'
-
+import courseData from './courseList.data.js'
 import CourseItem from "../courseItem/courseItem.component";
+import Grid from '@material-ui/core/Grid';
 class  CourseList extends React.Component
 {
 constructor(){
     super();
-    this.state={ sections:[
-        {
-          course: 'Java',
-          imageUrl: '/assets/images/java.jpg',
-          id: 1,
-          desc: 'Java'
-        },
-        {
-          course: 'C',
-          imageUrl: '/assets/images/oracle.png',
-          id: 2,
-          desc: 'C'
-        },
-        {
-          course: 'C+',
-          imageUrl: '/assets/images/java.jpg',
-          id: 3,
-          desc: 'C+'
-        },
-        {
-          course: 'Oracle',
-          imageUrl: '/assets/images/oracle.png',
-          size: 'large',
-          id: 4,
-          desc: 'Oracle'
-        },
-        {
-          course: 'Php',
-          imageUrl: '/assets/images/oracle.png',
-          size: 'large',
-          id: 5,
-          desc: 'Php'
-        }
-      ]
+    this.state={courseData:courseData};
 }
-}
+
 
 render() {
 return <div className="course-list">
 <div className="diectory-menu">
+<Grid container spacing={3}>
 {
-    this.state.sections.map(({title,desc,imageUrl,id})=>(<CourseItem key={id} title={title} desc={desc} imageUrl={imageUrl} id={id}/>))
+    
+    this.state.courseData.map(({course,desc,imageUrl,id,subSections})=>(<Grid item xs="4"><CourseItem key={id} title={course} desc={desc} imageUrl={imageUrl} id={id} subSections={subSections}/></Grid>))
+
 }
+</Grid>
 </div>
 </div>
+
 }
 }
 export default CourseList;

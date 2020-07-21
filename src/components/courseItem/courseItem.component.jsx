@@ -1,8 +1,9 @@
 
 
 import React from "react";
+import {Link} from 'react-router-dom'
 import './courseItem.styles.scss'
-const CourseItem=({title,desc,imageUrl,id})=>(
+const CourseItem=({title,desc,imageUrl,id, subSections})=>(
 
 
 <div style={{
@@ -10,7 +11,7 @@ const CourseItem=({title,desc,imageUrl,id})=>(
  }} 
 className="course-item">
 <div className="content">
-    <h1 className="course">{title}</h1>
+    <h1 className="course"><Link to={`/courseDescription/${id}`} >{title}</Link></h1>
     <span className="desc">{desc}</span>
 </div>
 </div>
