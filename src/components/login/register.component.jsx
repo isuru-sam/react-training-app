@@ -3,21 +3,54 @@ import './register.component.scss'
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 //import courseData from './courseList.data.js'
+import {auth,createUserProfileDocument} from '../firebase/firebase.utils.js'
+
 class  Register extends React.Component
 {
 constructor(){
     super();
   //  this.state={courseData:courseData};
   this.state={
-    first_name:'',
+    displayName:'',
     last_name:'',
     email:'',
-    password:''
+    password:'',
+    confirmPassword:''
   }
 }
+handleChange = event => {
+    const { name, value } = event.target;
 
-handleClick(event){
-}
+    this.setState({ [name]: value });
+  };
+handleClick=async event => {
+    event.preventDefault();
+
+    const { displayName, email, password, confirmPassword } = this.state;
+
+    if (password !== confirmPassword) {
+      alert("passwords don't match");
+      return;
+    }
+
+    try {
+      const { user } = await auth.createUserWithEmailAndPassword(
+        email,
+        password
+      );
+
+      await createUserProfileDocument(user, { displayName });
+
+      this.setState({
+        displayName: '',
+        email: '',
+        password: '',
+        confirmPassword: ''
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
 render() {
     const style = {
         margin: 15,
@@ -25,33 +58,37 @@ render() {
 return <div className="signin-register">
 
 <h1>Register</h1>
-FirstName<TextField
-             hintText="Enter your First Name"
+<form onSubmit={this.handleClick}>
+DisplayName<TextField name="displayName"
+             placeholder="Enter your First Name"
             // floatingLabelText="First Name"
-             onChange = {(event,newValue) => this.setState({first_name:newValue})}
+             onChange = {this.handleChange}
              />
            <br/>
-           LastName<TextField
-             hintText="Enter your Last Name"
-             floatingLabelText="Last Name"
-             onChange = {(event,newValue) => this.setState({last_name:newValue})}
-             />
-           <br/>
-          Email <TextField
-             hintText="Enter your Email"
+          
+          Email <TextField name="email"
+             placeholder="Enter your Email"
              type="email"
-             floatingLabelText="Email"
-             onChange = {(event,newValue) => this.setState({email:newValue})}
+            // floatingLabelText="Email"
+             onChange = {this.handleChange}
              />
            <br/>
-          Password <TextField
+          Password <TextField name="password"
              type = "password"
-             hintText="Enter your Password"
-             floatingLabelText="Password"
-             onChange = {(event,newValue) => this.setState({password:newValue})}
+             placeholder="Enter your Password"
+            // floatingLabelText="Password"
+             onChange = {this.handleChange}
              />
            <br/>
-           <Button variant="contained" color="primary" style={style} onClick={(event) => this.handleClick(event)}>Register</Button>
+           Confirm Password <TextField name="confirmPassword"
+             type = "password"
+             placeholder="Enter your Password"
+            // floatingLabelText="Password"
+             onChange ={this.handleChange}
+             />
+           <br/>
+           <Button type="submit" variant="contained" color="primary" style={style} onClick={(event) => this.handleClick(event)}>Register</Button>
+</form>
 </div>
 }
 }

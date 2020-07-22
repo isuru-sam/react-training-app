@@ -7,6 +7,7 @@ import { withStyles } from "@material-ui/core/styles";
 import {ReactComponent as Logo} from '../../../assets/images/crown.svg';
 import React from "react";
 import {withRouter} from 'react-router-dom'
+import {auth} from '../../firebase/firebase.utils.js'
 // import Link from '@material-ui/core/Link';
 // import LangSwithcher from '../languageSwitcher';
 import styles from "./styles";
@@ -56,8 +57,9 @@ class TopMenuBar extends React.Component {
        
           const {history}=this.props;
      //   const classes = useStyles();
-
+const {currentUser} = this.props;
         return (
+
             <AppBar position="static">
             <Toolbar>
                 <Logo className="logo"/>
@@ -68,9 +70,10 @@ class TopMenuBar extends React.Component {
                 News
               </Typography>
               <Button color="inherit" onClick={()=>history.push("/")}>Home</Button>
-            
-              <Button color="inherit" onClick={()=>history.push("/signInRegister")}>Login</Button>
-            </Toolbar>
+            {
+              currentUser ? <Button color="inherit" onClick={()=>auth.signOut()}>LogOut</Button> : <Button color="inherit" onClick={()=>history.push("/signInRegister")}>Login</Button>
+            }
+              </Toolbar>
           </AppBar>
         );
     }
