@@ -8,6 +8,7 @@ import {ReactComponent as Logo} from '../../../assets/images/crown.svg';
 import React from "react";
 import {withRouter} from 'react-router-dom'
 import {auth} from '../../firebase/firebase.utils.js'
+import {connect} from 'react-redux'
 // import Link from '@material-ui/core/Link';
 // import LangSwithcher from '../languageSwitcher';
 import styles from "./styles";
@@ -84,7 +85,9 @@ const {currentUser} = this.props;
 
 
 
+const mapStateToProps=(state)=>({
+    currentUser:state.user.currentUser
+})
 
-
-export default withRouter((withStyles(styles)(TopMenuBar)));
+export default connect(mapStateToProps)(withRouter((withStyles(styles)(TopMenuBar))));
 //export default connect(mapStateToProps, { signOut })(withTranslation('translations')(TopMenuBarStyles));

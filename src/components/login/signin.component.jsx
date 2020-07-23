@@ -19,10 +19,13 @@ handleChange = event => {
   const { value, name } = event.target;
 
   this.setState({ [name]: value });
+  console.log(value);
 };
 handleClick= async event=>{
   event.preventDefault();
 const {email,password}=this.state;
+console.log(email);
+console.log(password);
 try{
 await auth.signInWithEmailAndPassword(email,password);
 console.log('loggedin')
@@ -39,15 +42,16 @@ render() {
     const style = {
         margin: 15,
        };
+       const {email,password}=this.state;
 return <div className="signin-register">
 <h1>Login</h1>
-UserName<TextField name="email"
+UserName<TextField name="email"  value={email} autoComplete="off"
              placeholder="Enter your Username"
              //floatingLabelText="Username"
              onChange = {this.handleChange}
              />
            <br/>
-             Password<TextField name="password"
+             Password<TextField name="password" value={password} autoComplete="off"
                type="password"
                placeholder="Enter your Password"
                //floatingLabelText="Password"

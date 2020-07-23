@@ -41,7 +41,7 @@ const courseData=[
     },
     {
       course: 'SpringBoot with Document Databases',
-      imageUrl: '/assets/images/java.jpg',
+      imageUrl: '..//assets/images/java.jpg',
       id: 3,
       desc: 'SpringBoot with Document Databases',
       subSections:[{
@@ -60,7 +60,7 @@ const courseData=[
     },
     {
       course: 'SPA technologies',
-      imageUrl: '/assets/images/oracle.png',
+      imageUrl: '../assets/images/oracle.png',
       size: 'large',
       id: 4,
       desc: 'SPA',
@@ -80,7 +80,7 @@ const courseData=[
     },
     {
       course: 'NodeJs',
-      imageUrl: '/assets/images/oracle.png',
+      imageUrl: '../assets/images/oracle.png',
       size: 'large',
       id: 5,
       desc: 'NodeJs',
