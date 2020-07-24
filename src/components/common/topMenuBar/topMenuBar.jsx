@@ -13,6 +13,8 @@ import {connect} from 'react-redux'
 // import LangSwithcher from '../languageSwitcher';
 import styles from "./styles";
 import './topMenuBar.sass';
+import CartIcon from '../../cart-icon/cart-icon.component.jsx'
+import CartDropdown from '../../cart-dropdown/cart-dropdown.component.jsx'
 //import { makeStyles } from '@material-ui/core/styles';
 class TopMenuBar extends React.Component {
 
@@ -58,11 +60,11 @@ class TopMenuBar extends React.Component {
        
           const {history}=this.props;
      //   const classes = useStyles();
-const {currentUser} = this.props;
+const {currentUser,hidden} = this.props;
         return (
 
             <AppBar position="static">
-            <Toolbar>
+            <Toolbar >
                 <Logo className="logo"/>
               <IconButton edge="start" className="classes.menuButton" color="inherit" aria-label="menu">
                 <MenuIcon />
@@ -74,8 +76,15 @@ const {currentUser} = this.props;
             {
               currentUser ? <Button color="inherit" onClick={()=>auth.signOut()}>LogOut</Button> : <Button color="inherit" onClick={()=>history.push("/signInRegister")}>Login</Button>
             }
+            <CartIcon/>
+            
+            <div>{
+            hidden?null:<CartDropdown/>
+            }
+            </div>
               </Toolbar>
           </AppBar>
+        
         );
     }
 }
@@ -86,7 +95,8 @@ const {currentUser} = this.props;
 
 
 const mapStateToProps=(state)=>({
-    currentUser:state.user.currentUser
+    currentUser:state.user.currentUser,
+    hidden:state.cart.hidden
 })
 
 export default connect(mapStateToProps)(withRouter((withStyles(styles)(TopMenuBar))));

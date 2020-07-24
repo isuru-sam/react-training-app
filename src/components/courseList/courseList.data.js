@@ -41,7 +41,7 @@ const courseData=[
     },
     {
       course: 'SpringBoot with Document Databases',
-      imageUrl: '..//assets/images/java.jpg',
+      imageUrl: '../assets/images/java.jpg',
       id: 3,
       desc: 'SpringBoot with Document Databases',
       subSections:[{

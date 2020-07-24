@@ -33,7 +33,7 @@ componentDidMount(){
   });
 }
 componentWillUnmount(){
-  this.unsubscribeFromAuth();
+   this.unsubscribeFromAuth=null;
 }
 // currentUser={this.state.currentUser}
 
