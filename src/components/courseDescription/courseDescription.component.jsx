@@ -66,7 +66,7 @@ let item={
     courseData:courseData,
     hours:hours
 }
-addItem(item)
+this.props.addItem(item)
     
 
 
