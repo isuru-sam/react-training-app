@@ -8,7 +8,8 @@ import MuiAlert from '@material-ui/lab/Alert';
 import 'date-fns';
 import TextField from '@material-ui/core/TextField';
 import moment from 'moment'
-
+import {connect} from 'react-redux'
+import {addItem} from '../../redux/cart/cart.actions.js'
 import Grid from '@material-ui/core/Grid';
 import DateFnsUtils from '@date-io/date-fns';
 import {
@@ -36,13 +37,50 @@ const date =
     : dateNow.getUTCDate();
 
 const materialDateInput = `${year}-${month}-${date}`; 
-    this.state={courseData:courseData,open:false,selectedDate:materialDateInput,fromTime:'8',toTime:'4'};
+
+
+
+    this.state={open:false,date:materialDateInput,selectedDate:materialDateInput,fromTime:'07:00',toTime:'09:00'};
+    
+//this.course=courseData.filter((c) => task.duration >= 120 );
 }
 handleClick=async event => {
     event.preventDefault();
-    this.setState({
-        open:true
-    })
+  
+   console.log('here')
+
+   const {date,fromTime,toTime,courseData}=this.state;
+   let dateTimeA = moment(date + ' ' + fromTime, 'YYYY-MM-DD HH:mm');
+   let dateTimeB = moment(date + ' ' + toTime, 'YYYY-MM-DD HH:mm');
+ 
+let datetimeC = dateTimeB.diff(dateTimeA, 'minutes');
+let hours =(Math.floor((datetimeC)/60))
+let mins= (datetimeC)%60
+let totalmins=datetimeC
+let item={
+    date:date,
+    fromTime:fromTime,
+    toTime:toTime,
+    mins:mins,
+    totalmins:totalmins,
+    courseData:courseData,
+    hours:hours
+}
+addItem(item)
+    
+
+
+    //const {courseData,date,fromTime,toTime,hours,minutes,totalMinutes}=this.state;
+console.log(item);
+}
+
+
+componentDidMount(){
+    let id =this.props.match.params.id
+    console.log(id)
+    let result = courseData.find(c => (c.id == id  ));
+    console.log(result)
+    this.setState({courseData:result})
 }
 
  handleClose = (event, reason) => {
@@ -55,14 +93,19 @@ handleClick=async event => {
     })
   };
 
-  calculateTimes(toTime){
+  calculateTimes(){
     //this.state = {startDate:1519026163000, timeEnd:1519126755000} // example
 
-    const {selectedDate,fromTime}=this.state;
-    let dateTimeA = moment(selectedDate + ' ' + fromTime, 'YYYY-MM-DD HH:mm');
-    let dateTimeB = moment(selectedDate + ' ' + toTime, 'YYYY-MM-DD HH:mm');
+    const {date,fromTime,toTime}=this.state;
+    let dateTimeA = moment(date + ' ' + fromTime, 'YYYY-MM-DD HH:mm');
+    let dateTimeB = moment(date + ' ' + toTime, 'YYYY-MM-DD HH:mm');
   
 let datetimeC = dateTimeB.diff(dateTimeA, 'minutes');
+this.setState({
+    hours:(datetimeC+60)/60,
+    minutes:(datetimeC+60)%60,
+    totalMinutes:(datetimeC+60)
+})
 console.log(datetimeC);
   }
 
@@ -81,7 +124,7 @@ console.log(datetimeC);
 
    handleToTimeChange = (time) => {
     console.log(time.target.value)
-    this.calculateTimes(time.target.value)
+   // this.calculateTimes(time.target.value)
     this.setState({
         toTime:time.target.value
     })
@@ -90,14 +133,16 @@ console.log(datetimeC);
 
    };
 render() {
-    console.log('test');
+  
     const {history}=this.props
-    const {open,selectedDate}=this.state;
+    const { match: { params } } = this.props;
+    console.log(params.id);
+    const {open,selectedDate,courseData}=this.state;
     return <div className="coursetitle-list">
     <div className="diectory-menu">
         <ul>
     {
-        this.state.courseData.filter(item=>item.id===1).map(({course,desc,id})=>(<li key={id}>{course}:{desc}</li>))
+        courseData?(<li key={courseData.id}>{courseData.course}:{courseData.desc}</li>):'lo'
     }
     </ul>
     </div>
@@ -155,5 +200,7 @@ render() {
     }
     }
     
-
-export default withRouter(CourseDescription);
+const mapDispatchToProps=dispatch=>({
+    addItem:item=>dispatch(addItem(item))
+})
+export default connect(null,mapDispatchToProps) (withRouter(CourseDescription));

@@ -17,7 +17,10 @@ return <div className="course-list">
 <Grid container spacing={3}>
 {
     
-    this.state.courseData.map(({course,desc,imageUrl,id,subSections})=>(<Grid item xs={4} key={id}><CourseItem key={id} title={course} desc={desc} imageUrl={imageUrl} id={id} subSections={subSections}/></Grid>))
+    this.state.courseData.map(({course,desc,imageUrl,id,subSections})=>
+    (<Grid item xs={4} key={id}>
+        <CourseItem key={id} title={course} desc={desc} imageUrl={imageUrl} id={id} subSections={subSections}/>
+        </Grid>))
 
 }
 </Grid>
