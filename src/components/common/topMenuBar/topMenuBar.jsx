@@ -15,6 +15,11 @@ import styles from "./styles";
 import './topMenuBar.sass';
 import CartIcon from '../../cart-icon/cart-icon.component.jsx'
 import CartDropdown from '../../cart-dropdown/cart-dropdown.component.jsx'
+import { createStructuredSelector } from 'reselect';
+
+
+import { selectCartHidden } from '../../../redux/cart/cart.selectors';
+import { selectCurrentUser } from '../../../redux/user/user.selector';
 //import { makeStyles } from '@material-ui/core/styles';
 class TopMenuBar extends React.Component {
 
@@ -93,11 +98,17 @@ const {currentUser,hidden} = this.props;
 //const TopMenuBarStyles = withStyles(styles)(TopMenuBar);
 
 
-
+/*
 const mapStateToProps=(state)=>({
     currentUser:state.user.currentUser,
     hidden:state.cart.hidden
-})
+})*/
+
+const mapStateToProps = createStructuredSelector({
+    currentUser: selectCurrentUser,
+    hidden: selectCartHidden
+  });
+  
 
 export default connect(mapStateToProps)(withRouter((withStyles(styles)(TopMenuBar))));
 //export default connect(mapStateToProps, { signOut })(withTranslation('translations')(TopMenuBarStyles));

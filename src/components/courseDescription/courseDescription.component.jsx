@@ -58,6 +58,7 @@ let hours =(Math.floor((datetimeC)/60))
 let mins= (datetimeC)%60
 let totalmins=datetimeC
 let item={
+    id:courseData.id,
     date:date,
     fromTime:fromTime,
     toTime:toTime,
@@ -72,6 +73,9 @@ this.props.addItem(item)
 
     //const {courseData,date,fromTime,toTime,hours,minutes,totalMinutes}=this.state;
 console.log(item);
+this.setState({
+  open:true
+})
 }
 
 

@@ -8,6 +8,7 @@ import TopNavBar from "./components/common/topMenuBar/topMenuBar";
 import Footer from "./components/common/footer/footerBar";
 import {connect} from 'react-redux'
 import setCurrentUser from './redux/user/user.actions.js'
+import CheckoutPage from './views/checkout/checkout.component.jsx'
 class  App extends React.Component{
 
 unsubscribeFromAuth=null;
@@ -42,6 +43,7 @@ render(){ return <div>
 <Switch>
   <Route exact path="/" component={ItemListPage}/>
   <Route exact path="/courseDescription/:id" component={CourseDescription}/>
+  <Route exact path="/checkout" component={CheckoutPage}/>
   <Route exact path="/signInRegister" render={()=>this.props.currentUser?(<Redirect to="/"/>):<SignInRegister/>}/>
 </Switch>
 <Footer/>

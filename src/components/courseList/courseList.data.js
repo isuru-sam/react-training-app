@@ -4,6 +4,7 @@ const courseData=[
       imageUrl: '../assets/images/java.jpg',
       id: 1,
       desc: 'Java',
+      hourlyRate:14,
       subSections:[{
           id:1,
           sectionId:1,
@@ -24,6 +25,7 @@ const courseData=[
       imageUrl: '../assets/images/oracle.png',
       id: 2,
       desc: 'SpringBoot with JPA',
+      hourlyRate:14,
       subSections:[{
         id:1,
         sectionId:2,
@@ -44,6 +46,7 @@ const courseData=[
       imageUrl: '../assets/images/java.jpg',
       id: 3,
       desc: 'SpringBoot with Document Databases',
+      hourlyRate:14,
       subSections:[{
         id:1,
         sectionId:3,
@@ -64,6 +67,7 @@ const courseData=[
       size: 'large',
       id: 4,
       desc: 'SPA',
+      hourlyRate:14,
       subSections:[{
         id:1,
         sectionId:4,
@@ -84,6 +88,7 @@ const courseData=[
       size: 'large',
       id: 5,
       desc: 'NodeJs',
+      hourlyRate:14,
       subSections:[{
         id:1,
         sectionId:5,

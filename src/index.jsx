@@ -13,7 +13,7 @@ import { MuiThemeProvider } from "@material-ui/core";
 import App  from "./App.jsx";
 import {BrowserRouter} from "react-router-dom"
 ReactDOM.render(
-  <React.StrictMode>
+  
      <MuiThemeProvider theme={theme}>
        <Provider store={store}>
        <BrowserRouter>
@@ -23,7 +23,7 @@ ReactDOM.render(
                      </BrowserRouter>
                      </Provider>
                     </MuiThemeProvider>
-  </React.StrictMode>,
+  ,
   document.getElementById('root')
 );
 
