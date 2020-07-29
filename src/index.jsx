@@ -4,12 +4,13 @@ import './index.css';
 
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
-import store from './redux/store.js'
+
 
 
 import theme from "./styles/theme";
 import { MuiThemeProvider } from "@material-ui/core";
-
+import { PersistGate} from 'redux-persist/integration/react'
+import {store,persistor} from './redux/store.js'
 import App  from "./App.jsx";
 import {BrowserRouter} from "react-router-dom"
 ReactDOM.render(
@@ -17,9 +18,9 @@ ReactDOM.render(
      <MuiThemeProvider theme={theme}>
        <Provider store={store}>
        <BrowserRouter>
-                      
+                      <PersistGate persistor={persistor}>
                         <App/>
-                     
+                        </PersistGate>
                      </BrowserRouter>
                      </Provider>
                     </MuiThemeProvider>

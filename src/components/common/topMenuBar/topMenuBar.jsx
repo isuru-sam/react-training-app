@@ -4,7 +4,7 @@ import IconButton from "@material-ui/core/IconButton";
 import Button from "@material-ui/core/Button";
 import MenuIcon from '@material-ui/icons/Menu';
 import { withStyles } from "@material-ui/core/styles";
-import {ReactComponent as Logo} from '../../../assets/images/crown.svg';
+import {ReactComponent as Logo} from '../../../assets/images/a2z.svg';
 import React from "react";
 import {withRouter} from 'react-router-dom'
 import {auth} from '../../firebase/firebase.utils.js'
@@ -12,7 +12,7 @@ import {connect} from 'react-redux'
 // import Link from '@material-ui/core/Link';
 // import LangSwithcher from '../languageSwitcher';
 import styles from "./styles";
-import './topMenuBar.sass';
+import './topMenuBar.scss';
 import CartIcon from '../../cart-icon/cart-icon.component.jsx'
 import CartDropdown from '../../cart-dropdown/cart-dropdown.component.jsx'
 import { createStructuredSelector } from 'reselect';
@@ -71,8 +71,9 @@ const {currentUser,hidden} = this.props;
             <AppBar position="static">
             <Toolbar >
                 <Logo className="logo"/>
-              <IconButton edge="start" className="classes.menuButton" color="inherit" aria-label="menu">
-                <MenuIcon />
+              <IconButton edge="start" className="classes.menuButton" color="inherit" aria-label="menu"  style={{ flex: 1 }}>
+              { //<MenuIcon />
+              }
               </IconButton>
               <Typography variant="h6" className="classes.title">
                 News
