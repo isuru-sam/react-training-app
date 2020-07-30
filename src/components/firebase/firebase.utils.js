@@ -38,7 +38,17 @@ var firebaseConfig = {
     return userRef;
   };
 
+export const addCollectionData=async (collectionKey,documentsToAdd)=>{
+  const collectionRef=firestore.collection(collectionKey);
+  const batch =firestore.batch()
+  documentsToAdd.forEach(o=>{
+    const newdocref = collectionRef.doc();
+    batch.set(newdocref,o)
+  })
+ return await batch.commit()
+ // console.log(collectionRef)
 
+}
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
   export const auth = firebase.auth()

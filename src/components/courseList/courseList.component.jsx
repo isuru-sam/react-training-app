@@ -3,14 +3,31 @@ import './courseList.styles.scss'
 import courseData from './courseList.data.js'
 import CourseItem from "../courseItem/courseItem.component";
 import Grid from '@material-ui/core/Grid';
+import {connect} from 'react-redux'
+import {firestore} from '../firebase/firebase.utils.js'
+import {updateCourses} from '../../redux/course/course.actions'
 class  CourseList extends React.Component
 {
+    unsub=null;
 constructor(){
     super();
-    this.state={courseData:courseData};
+    this.state={courseData:[]};
 }
-
-
+componentDidMount(){
+    var cdata=[];
+    const courseCollectionref= firestore.collection('courses')
+  this.unsub=  courseCollectionref.onSnapshot(async course => {
+       course.docs.map(doc=>{cdata.push(doc.data())})
+      
+        this.setState({courseData:cdata});
+        this.props.updateCourses(cdata)
+   
+    })
+  //  console.log(cdata)
+}
+componentWillUnmount(){
+//this.unsub.uns
+}
 render() {
 return <div className="course-list">
 <div className="diectory-menu">
@@ -29,4 +46,7 @@ return <div className="course-list">
 
 }
 }
-export default CourseList;
+const mapDispatchToProps=(dispatch)=>({
+    updateCourses:courses=>dispatch(updateCourses(courses))
+});
+export default connect(null,mapDispatchToProps)(CourseList);

@@ -3,12 +3,13 @@ import {Route,Switch,Redirect} from "react-router-dom"
 import ItemListPage from "./views/itemList/itemList.jsx";
 import CourseDescription from "./components/courseDescription/courseDescription.component.jsx";
 import SignInRegister from "./views/signin-register/signin-register.jsx";
-import {auth,createUserProfileDocument} from './components/firebase/firebase.utils.js'
+import {auth,createUserProfileDocument,addCollectionData} from './components/firebase/firebase.utils.js'
 import TopNavBar from "./components/common/topMenuBar/topMenuBar";
 import Footer from "./components/common/footer/footerBar";
 import {connect} from 'react-redux'
 import setCurrentUser from './redux/user/user.actions.js'
 import CheckoutPage from './views/checkout/checkout.component.jsx'
+import courseData from './components/courseList/courseList.data'
 class  App extends React.Component{
 
 unsubscribeFromAuth=null;
@@ -31,6 +32,7 @@ componentDidMount(){
     }
 
     setCurrentUser( userAuth );
+    //addCollectionData('courses',courseData)
   });
 }
 componentWillUnmount(){

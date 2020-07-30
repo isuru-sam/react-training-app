@@ -2,16 +2,18 @@ import React from "react";
 import {withRouter} from "react-router-dom"
 import './courseDescription.styles.scss'
 import Button from "@material-ui/core/Button";
-import courseData from '../courseList/courseList.data.js'
+//import courseData from '../courseList/courseList.data.js'
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 import 'date-fns';
 import TextField from '@material-ui/core/TextField';
 import moment from 'moment'
 import {connect} from 'react-redux'
+import { createStructuredSelector } from 'reselect';
 import {addItem} from '../../redux/cart/cart.actions.js'
 import Grid from '@material-ui/core/Grid';
 import DateFnsUtils from '@date-io/date-fns';
+import {selectCourses} from '../../redux/course/course.selectors'
 import {
   MuiPickersUtilsProvider,
   KeyboardTimePicker,
@@ -40,7 +42,7 @@ const materialDateInput = `${year}-${month}-${date}`;
 
 
 
-    this.state={open:false,date:materialDateInput,selectedDate:materialDateInput,fromTime:'07:00',toTime:'09:00'};
+    this.state={courseData:[],open:false,date:materialDateInput,selectedDate:materialDateInput,fromTime:'07:00',toTime:'09:00'};
     
 //this.course=courseData.filter((c) => task.duration >= 120 );
 }
@@ -81,10 +83,10 @@ this.setState({
 
 componentDidMount(){
     let id =this.props.match.params.id
-    console.log(id)
-    let result = courseData.find(c => (c.id == id  ));
-    console.log(result)
-    this.setState({courseData:result})
+    console.log(this.props.courses)
+    let result = this.props.courses.find(c => (c.id == id  ));
+    console.log('result is'+result)
+   this.setState({courseData:result})
 }
 
  handleClose = (event, reason) => {
@@ -146,7 +148,7 @@ render() {
     <div className="diectory-menu">
         <ul>
     {
-        courseData?(<li key={courseData.id}>{courseData.course}:{courseData.desc}</li>):'lo'
+       courseData?(<li key={courseData.id}>{courseData.course}:{courseData.desc}</li>):'lo'
     }
     </ul>
     </div>
@@ -207,4 +209,10 @@ render() {
 const mapDispatchToProps=dispatch=>({
     addItem:item=>dispatch(addItem(item))
 })
-export default connect(null,mapDispatchToProps) (withRouter(CourseDescription));
+
+const mapStateToProps = createStructuredSelector({
+  courses: selectCourses
+
+});
+
+export default connect(mapStateToProps,mapDispatchToProps) (withRouter(CourseDescription));
