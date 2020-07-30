@@ -1,6 +1,6 @@
 import {takeEvery,call,put} from 'redux-saga/effects'
 import CourseActionTypes from './course.types'
-import firestore from '../../components/firebase/firebase.utils'
+import {firestore} from '../../components/firebase/firebase.utils'
 import {fetchCoursesSuccess,fetchCoursesFailure} from './course.actions'
 
 export function getCourseData(snapshot){
@@ -10,14 +10,17 @@ export function getCourseData(snapshot){
 }
 
 export function* fetchCoursesAsync(){
-yield console.log('fetching')
+yield console.log('fetching'+firestore)
 try{
 
-const courseCollectionref= firestore.collection('courses')
+const courseCollectionref=  firestore.collection('courses')
+//console.log('dd3d'+snapshot)
 const snapshot=yield courseCollectionref.get()
+console.log('ddd'+snapshot)
 const cdata=yield call(getCourseData,snapshot)
 yield put(fetchCoursesSuccess(cdata))
 }catch(error){
+    console.log(error)
 yield put(fetchCoursesFailure(error.message))
 }
 

@@ -1,6 +1,6 @@
-import React from "react";
+import React,{lazy,Suspense} from "react";
 import {Route,Switch,Redirect} from "react-router-dom"
-import ItemListPage from "./views/itemList/itemList.jsx";
+//import ItemListPage from "./views/itemList/itemList.jsx";
 import CourseDescription from "./components/courseDescription/courseDescription.component.jsx";
 import SignInRegister from "./views/signin-register/signin-register.jsx";
 import {auth,createUserProfileDocument,addCollectionData} from './components/firebase/firebase.utils.js'
@@ -10,6 +10,7 @@ import {connect} from 'react-redux'
 import setCurrentUser from './redux/user/user.actions.js'
 import CheckoutPage from './views/checkout/checkout.component.jsx'
 import courseData from './components/courseList/courseList.data'
+const ItemListPage = lazy(()=>import('./views/itemList/itemList.jsx'))
 class  App extends React.Component{
 
 unsubscribeFromAuth=null;
@@ -43,10 +44,13 @@ componentWillUnmount(){
 render(){ return <div>
     <TopNavBar/>
 <Switch>
+  <Suspense fallback={<div>...Loading</div>}>
   <Route exact path="/" component={ItemListPage}/>
+  
   <Route exact path="/courseDescription/:id" component={CourseDescription}/>
   <Route exact path="/checkout" component={CheckoutPage}/>
   <Route exact path="/signInRegister" render={()=>this.props.currentUser?(<Redirect to="/"/>):<SignInRegister/>}/>
+  </Suspense>
 </Switch>
 <Footer/>
 </div>
