@@ -12,13 +12,13 @@ const courseReducer = (state = INITIAL_STATE, action) => {
         return {
             ...state,courses:action.payload
         }; 
-        case CourseActionTypes.FETCH_COLLECTIONS_SUCCESS:
+        case CourseActionTypes.FETCH_COURSES_SUCCESS:
           return {
             ...state,
             isFetching: false,
             courses: action.payload
           };
-        case CourseActionTypes.FETCH_COLLECTIONS_FAILURE:
+        case CourseActionTypes.FETCH_COURSES_FAILURE:
           return {
             ...state,
             isFetching: false,
