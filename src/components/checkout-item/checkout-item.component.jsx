@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import {
-  clearItemFromCart,
+  clearItem,
   addItem,
   removeItem
 } from '../../redux/cart/cart.actions';
@@ -23,7 +23,7 @@ const CheckoutItem = ({ cartItem, clearItem, addItem, removeItem }) => {
      
       <span className='name'>{cartItem.hours}hrs{cartItem.mins}mins</span>
       <span className='price'>${Math.floor(cartItem.totalmins*cartItem.courseData.hourlyRate/60)}</span>
-      <div className='remove-button' onClick={() => clearItem(cartItem)}>
+      <div className='remove-button' onClick={() => clearItem(cartItem.id)}>
         &#10005;
       </div>
     </div>
@@ -31,7 +31,7 @@ const CheckoutItem = ({ cartItem, clearItem, addItem, removeItem }) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  //clearItem: item => dispatch(clearItemFromCart(item)),
+  clearItem: item => dispatch(clearItem(item)),
  // addItem: item => dispatch(addItem(item)),
  // removeItem: item => dispatch(removeItem(item))
 });

@@ -7,6 +7,7 @@ import {auth,createUserProfileDocument,addCollectionData} from './components/fir
 import TopNavBar from "./components/common/topMenuBar/topMenuBar";
 import Footer from "./components/common/footer/footerBar";
 import {connect} from 'react-redux'
+import './App.css'
 import setCurrentUser from './redux/user/user.actions.js'
 import CheckoutPage from './views/checkout/checkout.component.jsx'
 import courseData from './components/courseList/courseList.data'
@@ -42,14 +43,14 @@ componentWillUnmount(){
 // currentUser={this.state.currentUser}
 
 render(){ return <div>
-    <TopNavBar/>
+    <TopNavBar />
 <Switch>
   <Suspense fallback={<div>...Loading</div>}>
   <Route exact path="/" component={ItemListPage}/>
   
   <Route exact path="/courseDescription/:id" component={CourseDescription}/>
   <Route exact path="/checkout" component={CheckoutPage}/>
-  <Route exact path="/signInRegister" render={()=>this.props.currentUser?(<Redirect to="/"/>):<SignInRegister/>}/>
+  <Route exact path="/signInRegister"  render={()=>this.props.currentUser?(<Redirect to="/"/>):<SignInRegister/>}/>
   </Suspense>
 </Switch>
 <Footer/>

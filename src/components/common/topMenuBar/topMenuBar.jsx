@@ -78,6 +78,7 @@ const {currentUser,hidden} = this.props;
               <Typography variant="h6" className="classes.title">
                 News
               </Typography>
+              <Button  color="inherit"  onClick={(event) => {currentUser?history.push("/checkout"):history.push({pathname:'/signInRegister',customNameData:{msg:'Please login/register to checkout',open:true}})}}>Checkout</Button>
               <Button color="inherit" onClick={()=>history.push("/")}>Home</Button>
             {
               currentUser ? <Button color="inherit" onClick={()=>auth.signOut()}>LogOut</Button> : <Button color="inherit" onClick={()=>history.push("/signInRegister")}>Login</Button>

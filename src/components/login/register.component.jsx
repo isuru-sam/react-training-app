@@ -59,29 +59,33 @@ return <div className="signin-register">
 
 <h1>Register</h1>
 <form onSubmit={this.handleClick}>
-DisplayName<TextField name="displayName"
+<TextField name="displayName"
              placeholder="Enter your First Name"
-            // floatingLabelText="First Name"
+            // floatingLabelText="First Name" 
+            label="FirstName"
              onChange = {this.handleChange}
              />
            <br/>
           
-          Email <TextField name="email"
+        <TextField name="email"
              placeholder="Enter your Email"
              type="email"
+             label="Email"
             // floatingLabelText="Email"
              onChange = {this.handleChange}
              />
            <br/>
-          Password <TextField name="password"
+         <TextField name="password"
              type = "password"
+             label="Password"
              placeholder="Enter your Password"
             // floatingLabelText="Password"
              onChange = {this.handleChange}
              />
            <br/>
-           Confirm Password <TextField name="confirmPassword"
+           <TextField name="confirmPassword"
              type = "password"
+             label="Confirm Password"
              placeholder="Enter your Password"
             // floatingLabelText="Password"
              onChange ={this.handleChange}

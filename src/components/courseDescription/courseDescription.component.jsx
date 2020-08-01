@@ -1,3 +1,4 @@
+
 import React from "react";
 import {withRouter} from "react-router-dom"
 import './courseDescription.styles.scss'
@@ -13,12 +14,17 @@ import { createStructuredSelector } from 'reselect';
 import {addItem} from '../../redux/cart/cart.actions.js'
 import Grid from '@material-ui/core/Grid';
 import DateFnsUtils from '@date-io/date-fns';
+import nextId from "react-id-generator";
+
+
 import {selectCourses} from '../../redux/course/course.selectors'
 import {
   MuiPickersUtilsProvider,
   KeyboardTimePicker,
   KeyboardDatePicker,
 } from '@material-ui/pickers';
+//const { uuidv4 } = require('uuidv4');
+import { v4 as uuidv4 } from 'uuid';
 function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
   }
@@ -26,6 +32,7 @@ class  CourseDescription extends React.Component
 {
 constructor(){
     super();
+    this.htmlId = nextId();
     const dateNow = new Date(); // Creating a new date object with the current date and time
 const year = dateNow.getFullYear(); // Getting current year from the created Date object
 const monthWithOffset = dateNow.getUTCMonth() + 1; // January is 0 by default in JS. Offsetting +1 to fix date for calendar.
@@ -60,7 +67,7 @@ let hours =(Math.floor((datetimeC)/60))
 let mins= (datetimeC)%60
 let totalmins=datetimeC
 let item={
-    id:courseData.id,
+    id:uuidv4(),
     date:date,
     fromTime:fromTime,
     toTime:toTime,

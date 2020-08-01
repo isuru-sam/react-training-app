@@ -45,14 +45,14 @@ render() {
        const {email,password}=this.state;
 return <div className="signin-register">
 <h1>Login</h1>
-UserName<TextField name="email"  value={email} autoComplete="off"
-             placeholder="Enter your Username"
+<TextField name="email"  value={email} autoComplete="off"
+             placeholder="Enter your Username"  label="UserName"
              //floatingLabelText="Username"
              onChange = {this.handleChange}
              />
            <br/>
-             Password<TextField name="password" value={password} autoComplete="off"
-               type="password"
+             <TextField name="password" value={password} autoComplete="off"
+               type="password" label="Password"
                placeholder="Enter your Password"
                //floatingLabelText="Password"
                onChange =  {this.handleChange}
