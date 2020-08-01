@@ -33,7 +33,7 @@ const publishableKey='pk_test_51HAFe7GYDT2VEC6r2YfijfRaZeKur07HBxdhCW2WAcPWwCzIh
       name='Test Ltd.'
       billingAddress
       shippingAddress
-      image='https://svgshare.com/i/CUz.svg'
+      image='https://training-app-a2z.herokuapp.com/a2z.jpeg'
       description={`Your total is $${price}`}
       amount={priceForStripe}
       panelLabel='Pay Now'

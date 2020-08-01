@@ -58,7 +58,7 @@ render() {
 return <div className="signin-register">
 
 <h1>Register</h1>
-<form onSubmit={this.handleClick}>
+
 <TextField name="displayName"
              placeholder="Enter your First Name"
             // floatingLabelText="First Name" 
@@ -92,7 +92,7 @@ return <div className="signin-register">
              />
            <br/>
            <Button type="submit" variant="contained" color="primary" style={style} onClick={(event) => this.handleClick(event)}>Register</Button>
-</form>
+
 </div>
 }
 }

@@ -15,7 +15,7 @@ import {addItem} from '../../redux/cart/cart.actions.js'
 import Grid from '@material-ui/core/Grid';
 import DateFnsUtils from '@date-io/date-fns';
 import nextId from "react-id-generator";
-
+import CourseRequirements from './courseRequirements'
 
 import {selectCourses} from '../../redux/course/course.selectors'
 import {
@@ -151,15 +151,26 @@ render() {
     const { match: { params } } = this.props;
     console.log(params.id);
     const {open,selectedDate,courseData}=this.state;
+    
     return <div className="coursetitle-list">
+      <Grid container spacing={3}>
+      <Grid item xs>
+      <h1>{courseData.course}</h1>
     <div className="diectory-menu">
-        <ul>
-    {
-       courseData?(<li key={courseData.id}>{courseData.course}:{courseData.desc}</li>):'lo'
+     <ul>
+      {
+      courseData.subSections?courseData.subSections.map(section=>(
+       
+    
+       <li key={section.id}>{section.title}</li>)):''
+    
+      
     }
-    </ul>
+      </ul>
+    
     </div>
-    <div>
+    <div> <br/>
+      <h3>Pick a date and time to schedule</h3>
     <TextField
     id="date"
     label="Date"
@@ -201,14 +212,20 @@ render() {
     }}
   />
   </div>
-  <div>
+  <div><br/>
     <Button type="submit" variant="contained" color="primary"  onClick={(event) => this.handleClick(event)}>Add To Cart</Button>
+    
     <Snackbar open={open} autoHideDuration={3000}  anchorOrigin={{ vertical: 'top', horizontal: 'center'}} onClose={(event) => this.handleClose(event)}>
         <Alert onClose={(event) => this.handleClose(event)} severity="success">
           Item added succesfully
         </Alert>
       </Snackbar>
     </div>
+    </Grid>
+    <Grid  item xs>
+<CourseRequirements/>
+    </Grid>
+    </Grid>
     </div>
     }
     }
