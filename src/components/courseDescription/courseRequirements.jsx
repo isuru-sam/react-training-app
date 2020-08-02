@@ -1,10 +1,24 @@
 import React from "react";
-const CourseRequirements = () => {
+const CourseRequirements = ({hourlyRate}) => {
     //const greeting = 'Hello Function Component!';
    
     return <div>
 <h1>Course Requirements and Conditions</h1>
-<span><b>This is a remote learning course</b></span>
+
+<div>
+<h3>Nature of the course</h3>
+<ul>
+    <li>This is a distance learning course</li>
+    <li>Hourly Rate {hourlyRate}</li>
+    <li>No of hours will vary based on student</li>
+    <li>Hours can be scheduled based on availability of slots</li>
+    <li>Multiple slots for same course or different courses can be schduled in a single checkout</li>
+<li>Individual subscription preferred for a session</li>
+<li>Maximum of 2 subscribers for a session</li>
+
+</ul>
+</div>
+
 <div>
 <h3>Software/Hardware Requirements</h3>
 <ul><li>Laptop/PC</li>
@@ -14,22 +28,15 @@ const CourseRequirements = () => {
 </ul>
 </div>
 
-<div>
-<h3>Conditions</h3>
-<ul>
-<li>Individual subscription prefered for a session</li>
-<li>Maximum of 2 subscribers for a session</li>
 
-</ul>
-</div>
 <div>
 <h3>Lectuerer Profile</h3>
 <ul>
 <li>Bsc Moratuwa Computer Science</li>
-<li>Oracle certified</li>
-<li>AWS certified</li>
-<li>PMP certified</li>
-<li>PMI-ACP certified</li>
+<li>Oracle certified Java Architect</li>
+<li>AWS certified Cloud Architect</li>
+<li>PMP certified from PMI</li>
+<li>PMI-ACP certified from PMI</li>
 </ul>
 </div>
 <div>

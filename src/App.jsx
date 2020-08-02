@@ -5,6 +5,7 @@ import CourseDescription from "./components/courseDescription/courseDescription.
 import SignInRegister from "./views/signin-register/signin-register.jsx";
 import {auth,createUserProfileDocument,addCollectionData} from './components/firebase/firebase.utils.js'
 import TopNavBar from "./components/common/topMenuBar/topMenuBar";
+import Schedules from "./components/schedules/schedules.component";
 import Footer from "./components/common/footer/footerBar";
 import {connect} from 'react-redux'
 import './App.css'
@@ -50,6 +51,7 @@ render(){ return <div>
   
   <Route exact path="/courseDescription/:id" component={CourseDescription}/>
   <Route exact path="/checkout" component={CheckoutPage}/>
+  <Route exact path="/schedules" component={Schedules}/>
   <Route exact path="/signInRegister"  render={()=>this.props.currentUser?(<Redirect to="/"/>):<SignInRegister/>}/>
   </Suspense>
 </Switch>

@@ -223,7 +223,7 @@ render() {
     </div>
     </Grid>
     <Grid  item xs>
-<CourseRequirements/>
+<CourseRequirements hourlyRate="12USD"/>
     </Grid>
     </Grid>
     </div>
