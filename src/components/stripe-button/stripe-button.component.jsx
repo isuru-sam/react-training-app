@@ -64,7 +64,7 @@ cartItems.forEach(cartItem=>{
       name='Test Ltd.'
       billingAddress
       shippingAddress
-      image='https://training-app-a2z.herokuapp.com/a2z.jpeg'
+      image='https://a2z-training-app-client.herokuapp.com/a2z.jpeg'
       description={`Your total is $${price}`}
       amount={priceForStripe}
       panelLabel='Pay Now'
